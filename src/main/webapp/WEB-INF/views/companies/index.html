@@ -17,7 +17,7 @@
         </strong>
         <small>
           <p style="margin-left: 30px;" th:text="${company.getSpeciality()}">&bull; VALUE</p>
-          <p style="margin-left: 30px;" th:text="${'Требуемый опыт: ' + company.getExperience()}">&bull; VALUE</p>
+          <p style="margin-left: 30px;" th:text="${'Требуемый опыт: ' + company.getExperience() + ' лет'}">&bull; VALUE</p>
             <a style="margin-left: 300px;"th:href="@{/companies/{id}(id=${company.getId()})}">Подробнее...</a>
         </small>
       </div>

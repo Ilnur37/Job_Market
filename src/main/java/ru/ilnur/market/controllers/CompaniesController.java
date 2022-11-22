@@ -6,7 +6,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ru.ilnur.market.dao.CompaniesDAO;
 import ru.ilnur.market.models.Company;
-import ru.ilnur.market.models.Worker;
 
 @RequestMapping("/companies")
 @Controller
