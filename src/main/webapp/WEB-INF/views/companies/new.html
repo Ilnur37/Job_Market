@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>New person</title>
+</head>
+<body>
+<span style="font-family: Arial;">
+    <a th:href="@{/}">Home</a>
+
+    <div style="max-width: 500px; margin-left: auto; margin-right: auto; padding: 15px;">
+
+    <form th:method="POST" th:action="@{/companies}" th:object="${company}">
+      <label for="name">Введите название: </label>
+      <input type="text" th:field="*{name}" id="name"/>
+      <br/>
+
+      <label for="address">Введите адресс: </label>
+      <input type="text" th:field="*{address}" id="address"/>
+      <br/>
+
+      <label for="education">Введите образование: </label>
+      <select th:object="${company}" th:field="*{education}" id="education">
+        <option th:value="3">Высшее</option>
+        <option th:value="2">Среднее</option>
+        <option th:value="1">Нет</option>
+      </select>
+      <br/>
+
+      <label for="speciality">Введите специальность: </label>
+      <select th:object="${company}" th:field="*{speciality}" id="speciality">
+        <option th:value="Водитель">Водитель</option>
+        <option th:value="Разработчик">Разработчик</option>
+        <option th:value="Менеджер">Менеджер</option>
+        <option th:value="Консультант">Консультант</option>
+        <option th:value="Хирург">Хирург</option>
+        <option th:value="Учитель">Учитель</option>
+      </select>
+      <br/>
+
+      <label for="experience">Введите опыт работы: </label>
+      <input type="text" th:field="*{experience}" id="experience"/>
+      <br/>
+
+      <label for="english">Владение английским: </label>
+      <select th:object="${company}" th:field="*{english}" id="english">
+        <option th:value="1">Да</option>
+        <option th:value="0">Нет</option>
+      </select>
+      <br/>
+
+      <label for="progLang">Владение программированием: </label>
+      <select th:object="${company}" th:field="*{progLang}" id="progLang">
+        <option th:value="1">Да</option>
+        <option th:value="0">Нет</option>
+      </select>
+      <br/>
+
+      <label for="car">Водительские права: </label>
+      <select th:object="${company}" th:field="*{car}" id="car">
+        <option th:value="1">Да</option>
+        <option th:value="0">Нет</option>
+      </select>
+      <br/>
+
+      <label for="computer">Владение компьютером: </label>
+      <select th:object="${company}" th:field="*{computer}" id="computer">
+        <option th:value="1">Да</option>
+        <option th:value="0">Нет</option>
+      </select>
+      <br/>
+
+      <input type="submit" value="Create!"/>
+    </form>
+
+    </div>
+  </span>
+</body>
+</html>

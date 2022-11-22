@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Show</title>
+</head>
+<body>
+  <span style="font-family: Arial;">
+    <a th:href="@{/}">Home</a>
+    <div style="max-width: 500px; margin-left: auto; margin-right: auto; padding: 15px;">
+
+      <h2><p th:text="${company.getName()}">VALUE</p></h2>
+      <p th:text="${'Специальность: ' + company.getSpeciality()}">VALUE</p>
+      <p th:text="${'Опыт: ' + company.getExperience() + ' лет'}">VALUE</p>
+
+      <div th:switch="${company.getEnglish()}">
+        <p th:case="0">Владение английским: Нет</p>
+        <p th:case="1">Владение английским: Да</p>
+      </div>
+
+      <div th:switch="${company.getProgLang()}">
+        <p th:case="0">Владение программированием: Нет</p>
+        <p th:case="1">Владение программированием: Да</p>
+      </div>
+
+      <div th:switch="${company.getCar()}">
+        <p th:case="0">Водительские права: Нет</p>
+        <p th:case="1">Водительские права: Да</p>
+      </div>
+
+      <div th:switch="${company.getComputer()}">
+        <p th:case="0">Владение компьютером: Нет</p>
+        <p th:case="1">Владение компьютером: Да</p>
+      </div>
+
+      <div th:switch="${company.getEducation()}">
+        <p th:case="1">Образование: Нет</p>
+        <p th:case="2">Образование: Среднее</p>
+        <p th:case="3">Образование: Высшее</p>
+      </div>
+      <p th:text="${'Адресс: ' + company.getAddress()}">VALUE</p>
+
+    </div>
+  </span>
+</body>
+</html>

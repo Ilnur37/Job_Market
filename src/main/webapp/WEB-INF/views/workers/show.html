@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Show</title>
+</head>
+<body>
+    <span style="font-family: Arial;">
+        <a th:href="@{/}">Home</a>
+
+        <div style="max-width: 500px; margin-left: auto; margin-right: auto; padding: 15px;">
+
+            <h2><p th:text="${worker.getName() + ', ' + worker.getSpeciality()}">VALUE</p></h2>
+
+            <div th:switch="${worker.getEducation()}">
+                <p th:case="1">Образование: Нет</p>
+                <p th:case="2">Образование: Среднее</p>
+                <p th:case="3">Образование: Высшее</p>
+            </div>
+
+            <p th:text="${'Опыт: ' + worker.getExperience() + ' лет'}">VALUE</p>
+
+            <div th:switch="${worker.getEnglish()}">
+                <p th:case="0">Владение английским: Нет</p>
+                <p th:case="1">Владение английским: Да</p>
+            </div>
+
+            <div th:switch="${worker.getProgLang()}">
+                <p th:case="0">Владение программированием: Нет</p>
+                <p th:case="1">Владение программированием: Да</p>
+            </div>
+
+            <div th:switch="${worker.getCar()}">
+                <p th:case="0">Водительские права: Нет</p>
+                <p th:case="1">Водительские права: Да</p>
+            </div>
+
+            <div th:switch="${worker.getComputer()}">
+                <p th:case="0">Владение компьютером: Нет</p>
+                <p th:case="1">Владение компьютером: Да</p>
+            </div>
+
+            <p th:text="${'Пол: ' + worker.getGender()}">VALUE</p>
+            <p th:text="${'Возраст: ' + worker.getAge()}">VALUE</p>
+            <p th:text="${'Адресс: ' + worker.getAddress()}">VALUE</p>
+            <br/>
+            <hr/>
+
+            <a th:href="@{/workers/{id}/edit(id=${worker.getId()})}">Редактировать</a>
+            <br/>
+            <a th:href="@{/workers/{id}/searchCompany(id=${worker.getId()})}">Найти работу</a>
+        </div>
+    </span>
+</body>
+</html>

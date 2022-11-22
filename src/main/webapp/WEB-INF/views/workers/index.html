@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Index</title>
+</head>
+<body>
+  <span style="font-family: Arial;">
+    <a th:href="@{/}">Home</a>
+
+    <div style="max-width: 500px; margin-left: auto; margin-right: auto; padding: 15px;">
+      <h2>Ищут работу</h2>
+      <div th:each="worker : ${workers}">
+        <a th:href="@{/workers/{id}(id=${worker.getId()})}"
+           th:text="${worker.getName()} + ',   (' + ${worker.getSpeciality() + ')'}">&bull; user</a>
+      </div>
+      <br/>
+      <hr/>
+
+      <a href="/workers/new">Добавить нового человека</a>
+    </div>
+  </span>
+</body>
+</html>
