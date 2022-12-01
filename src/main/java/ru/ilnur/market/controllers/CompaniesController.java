@@ -3,6 +3,7 @@ package ru.ilnur.market.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import ru.ilnur.market.dao.CompaniesDAO;
 import ru.ilnur.market.models.Company;
@@ -35,7 +36,11 @@ public class CompaniesController {
     }
 
     @PostMapping()
-    public String create(@ModelAttribute("company") Company company) {
+    public String create(@ModelAttribute("company") Company company,
+                         BindingResult bindingResult) {
+        if(bindingResult.hasErrors())
+            return "companies/new";
+
         companiesDAO.save(company);
         return "redirect:/companies";
     }

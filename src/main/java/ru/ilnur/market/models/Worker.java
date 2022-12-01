@@ -5,6 +5,9 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Pattern;
 
 @Entity
 @Data
@@ -16,10 +19,12 @@ public class Worker {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    @NotEmpty(message = "Name should not be empty")
     private String name;
 
     private String gender;
 
+    @Min(value = 18, message = "Age should be grater than 17")
     private int age;
 
     private String address;
@@ -28,6 +33,7 @@ public class Worker {
 
     private String speciality;
 
+    @Min(value = 0, message = "Incorrect value")
     private int experience;
 
     private int english;

@@ -3,9 +3,12 @@ package ru.ilnur.market.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import ru.ilnur.market.dao.WorkerDAO;
 import ru.ilnur.market.models.Worker;
+
+import javax.validation.Valid;
 
 
 @Controller
@@ -36,7 +39,11 @@ public class WorkersController {
     }
 
     @PostMapping()
-    public String create(@ModelAttribute("worker") Worker worker) {
+    public String create(@ModelAttribute("worker") @Valid Worker worker,
+                         BindingResult bindingResult) {
+        if(bindingResult.hasErrors())
+            return "workers/new";
+
         workerDAO.save(worker);
         return "redirect:/workers";
     }
@@ -48,8 +55,12 @@ public class WorkersController {
     }
 
     @PatchMapping("/{id}")
-    public String update(@ModelAttribute("worker") Worker worker,
+    public String update(@ModelAttribute("worker") @Valid Worker worker,
+                         BindingResult bindingResult,
                          @PathVariable("id") int id) {
+        if(bindingResult.hasErrors())
+            return "workers/edit";
+
         workerDAO.update(worker, id);
         return "redirect:/workers";
     }

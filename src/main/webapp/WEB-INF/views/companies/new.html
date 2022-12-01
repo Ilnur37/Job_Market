@@ -13,6 +13,7 @@
     <form th:method="POST" th:action="@{/companies}" th:object="${company}">
       <label for="name">Введите название: </label>
       <input type="text" th:field="*{name}" id="name"/>
+      <div style="color: red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name error</div>
       <br/>
 
       <label for="address">Введите адресс: </label>
@@ -41,6 +42,7 @@
 
       <label for="experience">Введите опыт работы: </label>
       <input type="text" th:field="*{experience}" id="experience"/>
+      <div style="color: red" th:if="${#fields.hasErrors('experience')}" th:errors="*{experience}">Experience error</div>
       <br/>
 
       <label for="english">Владение английским: </label>

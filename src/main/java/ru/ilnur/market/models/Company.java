@@ -5,6 +5,8 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
 
 @Entity
 @Data
@@ -16,6 +18,7 @@ public class Company {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    @NotEmpty(message = "Name should not be empty")
     private String name;
 
     private String address;
@@ -24,6 +27,7 @@ public class Company {
 
     private String speciality;
 
+    @Min(value = 0, message = "Incorrect value")
     private int experience;
 
     private int english;
