@@ -64,7 +64,7 @@ public class WorkerDAO {
 
         Worker worker = session.get(Worker.class, id);
 
-        Query query = session.createQuery("select c from Company c " +
+        List<Company> companies = session.createQuery("select c from Company c " +
                 "where c.speciality=:speciality and c.education<=:education " +
                 "and c.experience<=:experience and c.english<=:english " +
                 "and c.progLang<=:progLang and c.car<=:car " +
@@ -75,9 +75,42 @@ public class WorkerDAO {
                 .setParameter("english", worker.getEnglish())
                 .setParameter("progLang", worker.getProgLang())
                 .setParameter("car", worker.getCar())
-                .setParameter("computer", worker.getComputer());
+                .setParameter("computer", worker.getComputer()).getResultList();
 
-        List<Company> companies = query.getResultList();
+        return companies;
+    }
+
+    @Transactional
+    public List<Company> searchAll(int id) {
+        Session session = sessionFactory.getCurrentSession();
+
+        Worker worker = session.get(Worker.class, id);
+
+        List<Company> companies = session.createQuery("select c from Company c " +
+                        "where c.speciality=:speciality and c.education<=:education " +
+                        "and c.experience<=:experience and c.english<=:english " +
+                        "and c.progLang<=:progLang and c.car<=:car " +
+                        "and c.computer<=:computer", Company.class)
+                .setParameter("speciality", worker.getSpeciality())
+                .setParameter("education", worker.getEducation())
+                .setParameter("experience", worker.getExperience())
+                .setParameter("english", worker.getEnglish())
+                .setParameter("progLang", worker.getProgLang())
+                .setParameter("car", worker.getCar())
+                .setParameter("computer", worker.getComputer()).getResultList();
+
+        companies.addAll(session.createQuery("select c from Company c " +
+                        "where c.speciality<>:speciality and c.education<=:education " +
+                        "and c.experience<=:experience and c.english<=:english " +
+                        "and c.progLang<=:progLang and c.car<=:car " +
+                        "and c.computer<=:computer", Company.class)
+                .setParameter("speciality", worker.getSpeciality())
+                .setParameter("education", worker.getEducation())
+                .setParameter("experience", worker.getExperience())
+                .setParameter("english", worker.getEnglish())
+                .setParameter("progLang", worker.getProgLang())
+                .setParameter("car", worker.getCar())
+                .setParameter("computer", worker.getComputer()).getResultList());
 
         return companies;
     }

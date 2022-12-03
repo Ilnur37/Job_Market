@@ -68,6 +68,13 @@ public class WorkersController {
     @GetMapping("/{id}/searchCompany")
     public String search(Model model, @PathVariable("id") int id) {
         model.addAttribute("companies", workerDAO.search(id));
+        model.addAttribute("worker", id);
+        return "companies/search";
+    }
+
+    @GetMapping("/{id}/searchAllCompany")
+    public String searchAll(Model model, @PathVariable("id") int id) {
+        model.addAttribute("companies", workerDAO.searchAll(id));
         return "companies/search";
     }
 }
