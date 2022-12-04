@@ -77,4 +77,10 @@ public class WorkersController {
         model.addAttribute("companies", workerDAO.searchAll(id));
         return "companies/search";
     }
+
+    @DeleteMapping("/{id}")
+    public String delete(@PathVariable("id") int id) {
+        workerDAO.delete(id);
+        return "redirect:/workers";
+    }
 }

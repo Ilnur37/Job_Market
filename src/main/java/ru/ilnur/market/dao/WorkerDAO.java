@@ -64,7 +64,7 @@ public class WorkerDAO {
 
         Worker worker = session.get(Worker.class, id);
 
-        List<Company> companies = session.createQuery("select c from Company c " +
+        return session.createQuery("select c from Company c " +
                 "where c.speciality=:speciality and c.education<=:education " +
                 "and c.experience<=:experience and c.english<=:english " +
                 "and c.progLang<=:progLang and c.car<=:car " +
@@ -76,8 +76,6 @@ public class WorkerDAO {
                 .setParameter("progLang", worker.getProgLang())
                 .setParameter("car", worker.getCar())
                 .setParameter("computer", worker.getComputer()).getResultList();
-
-        return companies;
     }
 
     @Transactional
@@ -113,5 +111,11 @@ public class WorkerDAO {
                 .setParameter("computer", worker.getComputer()).getResultList());
 
         return companies;
+    }
+
+    @Transactional
+    public void delete(int id) {
+        Session session = sessionFactory.getCurrentSession();
+        session.delete(session.get(Worker.class, id));
     }
 }

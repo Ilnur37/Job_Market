@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 import ru.ilnur.market.models.Company;
+import ru.ilnur.market.models.Worker;
 
 import java.util.List;
 
@@ -36,4 +37,27 @@ public class CompaniesDAO {
         Session session = sessionFactory.getCurrentSession();
         session.save(company);
     }
+
+    @Transactional
+    public void update(Company updatedCompany, int id) {
+        Session session = sessionFactory.getCurrentSession();
+        Company companyToBeUpdated = session.get(Company.class, id);
+
+        companyToBeUpdated.setName(updatedCompany.getName());
+        companyToBeUpdated.setAddress(updatedCompany.getAddress());
+        companyToBeUpdated.setEducation(updatedCompany.getEducation());
+        companyToBeUpdated.setSpeciality(updatedCompany.getSpeciality());
+        companyToBeUpdated.setExperience(updatedCompany.getExperience());
+        companyToBeUpdated.setEnglish(updatedCompany.getEnglish());
+        companyToBeUpdated.setProgLang(updatedCompany.getProgLang());
+        companyToBeUpdated.setCar(updatedCompany.getCar());
+        companyToBeUpdated.setComputer(updatedCompany.getComputer());
+    }
+
+    @Transactional
+    public void delete(int id) {
+        Session session = sessionFactory.getCurrentSession();
+        session.delete(session.get(Company.class, id));
+    }
+
 }
