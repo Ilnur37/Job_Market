@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>New company</title>
+    <title>Update company</title>
 </head>
 <body>
 <span style="font-family: Arial;">
@@ -10,7 +10,7 @@
 
     <div style="max-width: 500px; margin-left: auto; margin-right: auto; padding: 15px;">
 
-    <form th:method="POST" th:action="@{/companies}" th:object="${company}">
+    <form th:method="PATCH" th:action="@{/companies/{id}(id=${company.getId()})}" th:object="${company}">
       <label for="name">Введите название: </label>
       <input type="text" th:field="*{name}" id="name"/>
       <div style="color: red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name error</div>
@@ -73,7 +73,7 @@
       </select>
       <br/>
 
-      <input type="submit" value="Create!"/>
+      <input type="submit" value="Обновить!"/>
     </form>
 
     </div>

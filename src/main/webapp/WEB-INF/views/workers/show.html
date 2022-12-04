@@ -49,9 +49,8 @@
             <a th:href="@{/workers/{id}/edit(id=${worker.getId()})}">Редактировать</a>
             <br/>
             <a th:href="@{/workers/{id}/searchCompany(id=${worker.getId()})}">Найти работу</a>
-            <br/>
             <form th:method="DELETE" th:action="@{/workers/{id}(id=${worker.getId()})}">
-            <input type="submit" value="Удалить"/>
+                <input type="submit" value="Удалить"/>
             </form>
         </div>
     </span>

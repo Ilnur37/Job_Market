@@ -39,6 +39,14 @@
         <p th:case="3">Образование: Высшее</p>
       </div>
       <p th:text="${'Адресс: ' + company.getAddress()}">VALUE</p>
+      <br/>
+      <hr/>
+
+      <a th:href="@{/companies/{id}/edit(id=${company.getId()})}">Редактировать</a>
+
+      <form th:method="DELETE" th:action="@{/companies/{id}(id=${company.getId()})}">
+        <input type="submit" value="Удалить"/>
+      </form>
 
     </div>
   </span>

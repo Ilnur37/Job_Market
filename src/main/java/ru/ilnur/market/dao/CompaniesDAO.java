@@ -59,5 +59,4 @@ public class CompaniesDAO {
         Session session = sessionFactory.getCurrentSession();
         session.delete(session.get(Company.class, id));
     }
-
 }
